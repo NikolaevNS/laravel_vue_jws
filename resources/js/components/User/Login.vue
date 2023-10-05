@@ -1,15 +1,31 @@
 <template>
 <div class="w-25">
-    <input type="email" class="form-control mt-3 m-3" placeholder="E-mail">
-    <input type="password" class="form-control m-3" placeholder="Password">
-    <input type="submit" class="btn btn-primary m-3">
+    <input v-model="email" type="email" class="form-control mt-3 m-3" placeholder="E-mail">
+    <input v-model="password" type="password" class="form-control m-3" placeholder="Password">
+    <input @click.prevent="login" type="submit" class="btn btn-primary m-3">
 </div>
 </template>
 
 <script>
 export default {
-name: "Login"
-}
+    name: "Login",
+
+    data() {
+        return {
+            email: null,
+            password: null
+        }
+    },
+
+    methods: {
+        login() {
+            axios.post('/api/auth/login', { email: this.email, password: this.password})
+            .then( res => {
+                localStorage.access_token = res.data.access_token
+            })
+        }
+    }
+};
 </script>
 
 <style scoped>

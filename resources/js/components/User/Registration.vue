@@ -23,6 +23,10 @@ export default {
         }
     },
 
+    mounted() {
+
+    },
+
     methods: {
         store() {
             axios.post('/api/users/', {
