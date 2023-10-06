@@ -1,7 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import Index from './components/Index.vue';
-import {router} from '../js/router';
+import router from '../js/router';
 
 const app = createApp({});
 

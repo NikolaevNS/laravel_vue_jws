@@ -1,5 +1,5 @@
 import axios from "axios";
-import {router} from '../js/router';
+import router from '../js/router';
 
 const api = axios.create();
 
@@ -16,7 +16,8 @@ api.interceptors.response.use( config => {
     }
     return config
 }, error => {
-    if (error.data.message === 'Token has expired') {
+    console.log(error.response.data.message);
+    if (error.response.data.message === 'Token has expired') {
         axios.post('/api/auth/refresh/', {}, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('access_token')}`,
